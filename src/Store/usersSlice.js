@@ -10,6 +10,20 @@ const usersSlice = createSlice({
     setUsers: (state, action) => {
       state.users = action.payload;
     },
+    chekUser: (state, action) => {
+      state.users.map((user) => {
+        if (user.id === action.payload) {
+          user.chekbox = !user.chekbox;
+        }
+        return user;
+      });
+    },
+    removeUser: (state) => {
+      state.users = state.users.filter((user) => !user.chekbox);
+    },
+    addUser: (state, action) => {
+      state.users.push(action.payload);
+    },
   },
 });
 
@@ -26,6 +40,6 @@ export const selectUsers = (state) => {
   return state.users.users;
 };
 
-export const { setUsers, sortUsers } = usersSlice.actions;
+export const { setUsers, chekUser, removeUser, addUser } = usersSlice.actions;
 
 export default usersSlice.reducer;

@@ -1,14 +1,14 @@
-export default function MySelect({ options, defaultValue, value, onChange }) {
+import classes from "./MySelect.module.scss";
+export default function MySelect({ options, onChange, name }) {
   return (
-    <select value={value} onChange={(event) => onChange(event.target.value)}>
-      <option value="" disabled>
-        {defaultValue}
-      </option>
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.name}
-        </option>
-      ))}
-    </select>
+    <div className={classes.textSelect}>
+      <select name={name} onChange={(event) => onChange(event.target.value)}>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.name}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
