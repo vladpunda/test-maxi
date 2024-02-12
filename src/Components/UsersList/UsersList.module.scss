@@ -53,8 +53,13 @@
       box-shadow: 0.15em 0.15em 0 0 rgba(15, 28, 63, 0.125);
     }
     tr:nth-child(even) {
-      background: #f8f8f8;
+      background-color: #f8f8f8;
     }
+    .onchek,
+    .onchek:nth-child(even) {
+      background-color: hsla(118, 85%, 32%, 0.125);
+    }
+
     tr:last-child td {
       border-bottom: 1px solid #ddd;
     }
@@ -64,5 +69,30 @@
     tr:last-child td:last-child {
       border-radius: 0 0 20px 0;
     }
+  }
+}
+.searchBlock {
+  display: flex;
+  margin: 2px 0 2px 0;
+
+  p {
+    margin: auto 0;
+    padding-left: 2px;
+  }
+  div {
+    display: flex;
+    button {
+      margin-left: 10px;
+    }
+  }
+  .userButton {
+    margin-left: auto;
+  }
+}
+.modButton {
+  display: flex;
+  justify-content: space-around;
+  button {
+    padding: 10px 20px 10px 20px !important;
   }
 }

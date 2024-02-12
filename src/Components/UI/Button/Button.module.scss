@@ -1,0 +1,29 @@
+.button {
+  width: max-content;
+
+  button {
+    display: flex;
+    width: 100%;
+    padding: 2px 5px 2px 5px;
+    font-family: inherit;
+    height: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #696666;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    &:hover {
+      color: #3b3e41;
+      background-color: #fff;
+      border-color: #bdbdbd;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+      cursor: pointer;
+    }
+  }
+}
