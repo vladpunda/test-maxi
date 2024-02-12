@@ -1,26 +1,27 @@
 import { ReactComponent as SortIcon } from "../../../Assets/Icons/sort-svgrepo-com.svg";
 import classes from "./UsersHeader.module.scss";
-export default function UsersHeader({ sortUsers }) {
+import PropTypes from "prop-types";
+function UsersHeader({ sortUsers }) {
   return (
     <tr>
       <th className={classes.sortButton}>
-        id
+        #
         <button type="button" onClick={() => sortUsers("id")}>
           <SortIcon />
         </button>
       </th>
-      <th>ava</th>
+      <th>Фото</th>
       <th className={classes.sortButton}>
-        name
+        Имя
         <button type="button" onClick={() => sortUsers("name")}>
           <SortIcon />
         </button>
       </th>
-      <th>username</th>
-      <th>email</th>
-      <th>phone</th>
+      <th>Имя пользователя</th>
+      <th>Электронная почта</th>
+      <th>Телефон</th>
       <th className={classes.sortButton}>
-        zipcode
+        Индекс
         <button type="button" onClick={() => sortUsers("address", "zipcode")}>
           <SortIcon />
         </button>
@@ -28,3 +29,7 @@ export default function UsersHeader({ sortUsers }) {
     </tr>
   );
 }
+UsersHeader.propTypes = {
+  sortUsers: PropTypes.func,
+};
+export default UsersHeader;

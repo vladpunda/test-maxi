@@ -1,5 +1,6 @@
 import classes from "./MySelect.module.scss";
-export default function MySelect({ options, onChange, name }) {
+import PropTypes from "prop-types";
+function MySelect({ options, onChange, name }) {
   return (
     <div className={classes.textSelect}>
       <select name={name} onChange={(event) => onChange(event.target.value)}>
@@ -12,3 +13,9 @@ export default function MySelect({ options, onChange, name }) {
     </div>
   );
 }
+MySelect.propTypes = {
+  options: PropTypes.array,
+  onChange: PropTypes.func,
+  name: PropTypes.string,
+};
+export default MySelect;

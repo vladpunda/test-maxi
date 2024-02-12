@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUsers } from "../Components/Api/Api";
+import { getUsers } from "../Api/Api";
 
 const usersSlice = createSlice({
   name: "users",
@@ -10,16 +10,16 @@ const usersSlice = createSlice({
     setUsers: (state, action) => {
       state.users = action.payload;
     },
-    chekUser: (state, action) => {
+    checkUser: (state, action) => {
       state.users.map((user) => {
         if (user.id === action.payload) {
-          user.chekbox = !user.chekbox;
+          user.checkbox = !user.checkbox;
         }
         return user;
       });
     },
     removeUser: (state) => {
-      state.users = state.users.filter((user) => !user.chekbox);
+      state.users = state.users.filter((user) => !user.checkbox);
     },
     addUser: (state, action) => {
       state.users.push(action.payload);
@@ -40,6 +40,6 @@ export const selectUsers = (state) => {
   return state.users.users;
 };
 
-export const { setUsers, chekUser, removeUser, addUser } = usersSlice.actions;
+export const { setUsers, checkUser, removeUser, addUser } = usersSlice.actions;
 
 export default usersSlice.reducer;
