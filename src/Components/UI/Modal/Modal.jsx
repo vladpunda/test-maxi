@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import classes from "./Modal.module.scss";
-export default function Modal({ children, open }) {
+import PropTypes from "prop-types";
+function Modal({ children, open }) {
   const dialog = useRef();
 
   useEffect(() => {
@@ -18,3 +19,8 @@ export default function Modal({ children, open }) {
     document.getElementById("modal")
   );
 }
+Modal.propTypes = {
+  children: PropTypes.node,
+  open: PropTypes.bool,
+};
+export default Modal;

@@ -1,11 +1,17 @@
 import classes from "../UsersList.module.scss";
-
-export default function UsersRow({ user, onChek }) {
+import PropTypes from "prop-types";
+function UsersRow({ user, onCheck }) {
   return (
-    <tr className={user.chekbox ? classes.onchek : ""}>
+    <tr className={user.checkbox ? classes.onCheck : ""}>
       <td>
-        {user.id}
-        <input name="choice" type="checkbox" onChange={() => onChek(user.id)} />
+        <div>
+          <input
+            name="choice"
+            type="checkbox"
+            onChange={() => onCheck(user.id)}
+          />
+          <span> {user.id}</span>
+        </div>
       </td>
       <td>
         <span>{user.name.slice(0, 1)}</span>
@@ -18,3 +24,8 @@ export default function UsersRow({ user, onChek }) {
     </tr>
   );
 }
+UsersRow.propTypes = {
+  user: PropTypes.object,
+  onCheck: PropTypes.func,
+};
+export default UsersRow;

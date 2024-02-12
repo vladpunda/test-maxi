@@ -1,88 +1,21 @@
-.table {
-  width: 100%;
-  border: none;
-  margin-bottom: 20px;
-  border-collapse: separate;
-  thead {
-    th {
-      font-weight: bold;
-      text-align: left;
-      border: none;
-      padding: 10px 15px;
-      background: #ededed;
-      font-size: 14px;
-      border-top: 1px solid #ddd;
-    }
-    // tr {
-    //   th:first-child {
-    //     border-radius: 20px 0 0 0;
-    //   }
-    //   th:last-child {
-    //     border-radius: 0 20px 0 0;
-    //   }
-    // }
-  }
-
-  tr {
-    th:first-child,
-    td:first-child {
-      border-left: 1px solid #ddd;
-    }
-    th:last-child,
-    td:last-child {
-      border-right: 1px solid #ddd;
-    }
-  }
-  tbody {
-    td {
-      text-align: left;
-      border: none;
-      padding: 10px 15px;
-      font-size: 14px;
-      vertical-align: top;
-    }
-    td:nth-child(2) span {
-      background: hsla(118, 85%, 32%, 0.125);
-      border-radius: 50%;
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 20px;
-      height: 20px;
-      box-shadow: 0.15em 0.15em 0 0 rgba(15, 28, 63, 0.125);
-    }
-    tr:nth-child(even) {
-      background-color: #f8f8f8;
-    }
-    .onchek,
-    .onchek:nth-child(even) {
-      background-color: hsla(118, 85%, 32%, 0.125);
-    }
-
-    tr:last-child td {
-      border-bottom: 1px solid #ddd;
-    }
-    tr:last-child td:first-child {
-      border-radius: 0 0 0 20px;
-    }
-    tr:last-child td:last-child {
-      border-radius: 0 0 20px 0;
-    }
-  }
-}
 .searchBlock {
   display: flex;
-  margin: 2px 0 2px 0;
+  margin: 20px 0 20px 0;
 
   p {
     margin: auto 0;
-    padding-left: 2px;
+    padding-left: 20px;
+    color: rgba(70, 79, 96, 1);
   }
   div {
     display: flex;
     button {
-      margin-left: 10px;
+      margin-left: 20px;
+      &:nth-child(2) {
+        color: rgba(255, 255, 255, 1);
+        background-color: rgba(94, 90, 219, 1);
+        border: none;
+      }
     }
   }
   .userButton {
@@ -94,5 +27,63 @@
   justify-content: space-around;
   button {
     padding: 10px 20px 10px 20px !important;
+  }
+}
+
+.table {
+  width: 100%;
+  border: none;
+  margin-bottom: 20px;
+
+  thead {
+    th {
+      font-size: 12px;
+      color: rgba(104, 113, 130, 1);
+      text-align: left;
+      padding: 10px 15px;
+      background: rgba(247, 249, 252, 0.8);
+      font-size: 14px;
+      border-top: 1px solid rgba(233, 237, 245, 1);
+      border-bottom: 1px solid rgba(233, 237, 245, 1);
+      &:nth-child(2) {
+        text-align: center;
+      }
+    }
+  }
+
+  tbody {
+    td {
+      text-align: left;
+      border-bottom: 1px solid rgba(233, 237, 245, 1);
+      padding: 10px 15px;
+      font-size: 14px;
+      color: rgba(23, 28, 38, 1);
+      vertical-align: middle;
+    }
+    td:nth-child(1) div {
+      display: flex;
+      input {
+        margin: 0 10px 0 0;
+      }
+    }
+    td:nth-child(2) span {
+      background: rgba(237, 237, 252, 1);
+      border-radius: 50%;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 16px;
+      height: 16px;
+      box-shadow: 0.15em 0.15em 0 0 rgba(15, 28, 63, 0.125);
+    }
+
+    .onCheck {
+      background-color: rgba(237, 237, 252, 1);
+    }
+
+    tr:last-child td:last-child {
+      border-radius: 0 0 10px 0;
+    }
   }
 }

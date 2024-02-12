@@ -1,9 +1,15 @@
 import classes from "./Button.module.scss";
+import PropTypes from "prop-types";
 
-export default function Button({ children, onClick }) {
+function Button({ children, onClick }) {
   return (
-    <div className={classes.button}>
-      <button onClick={onClick}>{children}</button>
-    </div>
+    <button className={classes.button} onClick={onClick}>
+      {children}
+    </button>
   );
 }
+Button.propTypes = {
+  children: PropTypes.string,
+  onClick: PropTypes.func,
+};
+export default Button;

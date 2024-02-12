@@ -5,12 +5,15 @@ import { useMemo, useState } from "react";
 import MyInput from "../UI/input/MyInput";
 import MySelect from "../UI/select/MySelect";
 import { useDispatch } from "react-redux";
-import { chekUser, removeUser } from "../../Store/usersSlice";
+import { checkUser } from "../../Store/usersSlice";
 import Modal from "../UI/Modal/Modal";
 import Button from "../UI/Button/Button";
 import FormAddUser from "./FormAddUser/FormAddUser";
+import ConfirmAsk from "./ConfirmAsk/ConfirmAsk";
+import PropTypes from "prop-types";
+import HeaderTitle from "./HeaderTitle/HeaderTitle";
 
-export default function UsersList({ users }) {
+function UsersList({ users }) {
   const dispatch = useDispatch();
   const [sort, setSort] = useState({
     field: null,
@@ -20,6 +23,7 @@ export default function UsersList({ users }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [inputForSearch, setInputForSearch] = useState("name");
   const [confirm, setConfirm] = useState(false);
+  const [addUserOpen, setAddUserOpen] = useState(false);
 
   const dynamicSort = (key, direction, secondKey) => {
     return function (a, b) {
@@ -61,25 +65,22 @@ export default function UsersList({ users }) {
     return users;
   }, [sort, users]);
 
-  const sortedAndFiltredUsers = useMemo(() => {
+  const sortedAndFilteredUsers = useMemo(() => {
     return sortedUsers.filter((user) =>
       user[inputForSearch].toLowerCase().includes(searchQuery.toLowerCase())
     );
   }, [searchQuery, sortedUsers, inputForSearch]);
 
-  function onCheck(userId) {
-    dispatch(chekUser(userId));
-  }
-  function openAndCloseConfirm() {
+  const onCheck = (userId) => {
+    dispatch(checkUser(userId));
+  };
+  const openAndCloseConfirm = () => {
     setConfirm(!confirm);
-  }
-  function removeOn() {
-    dispatch(removeUser());
-  }
+  };
 
   return (
     <div>
-      <FormAddUser />
+      <HeaderTitle title={"Список сотрудников"}></HeaderTitle>
       <div className={classes.searchBlock}>
         <div>
           <p>Искать по:</p>
@@ -88,9 +89,9 @@ export default function UsersList({ users }) {
             value={inputForSearch}
             onChange={setInputForSearch}
             options={[
-              { value: "name", name: "name" },
-              { value: "email", name: "email" },
-              { value: "phone", name: "phone" },
+              { value: "name", name: "Имя" },
+              { value: "email", name: "Почта" },
+              { value: "phone", name: "Телефон" },
             ]}
           />
           <MyInput
@@ -102,39 +103,26 @@ export default function UsersList({ users }) {
         </div>
         <div className={classes.userButton}>
           <Button onClick={openAndCloseConfirm}>Удалить сотрудника</Button>
-          <Button>Добавить сотрудника</Button>
+          <Button onClick={() => setAddUserOpen(true)}>
+            Добавить сотрудника
+          </Button>
         </div>
       </div>
       <Modal open={confirm}>
-        <h3>Вы точно хотите удалить сотрудника?</h3>
-        <div className={classes.modButton}>
-          <Button
-            onClick={() => {
-              removeOn();
-              openAndCloseConfirm();
-            }}
-          >
-            Да
-          </Button>
-          <Button onClick={openAndCloseConfirm}>Нет</Button>
-        </div>
+        <ConfirmAsk openAndCloseConfirm={openAndCloseConfirm} />
       </Modal>
-      {sortedAndFiltredUsers.length ? (
+      <Modal open={addUserOpen}>
+        <FormAddUser users={users} onModalClose={() => setAddUserOpen(false)} />
+      </Modal>
+      {sortedAndFilteredUsers.length ? (
         <table className={classes.table}>
           <thead>
             <UsersHeader sortUsers={sortUsers} />
           </thead>
 
           <tbody>
-            {sortedAndFiltredUsers.map((user) => {
-              return (
-                <UsersRow
-                  user={user}
-                  key={user.id}
-                  removeOn={removeOn}
-                  onChek={onCheck}
-                />
-              );
+            {sortedAndFilteredUsers.map((user) => {
+              return <UsersRow user={user} key={user.id} onCheck={onCheck} />;
             })}
           </tbody>
         </table>
@@ -144,3 +132,7 @@ export default function UsersList({ users }) {
     </div>
   );
 }
+UsersList.propTypes = {
+  users: PropTypes.array,
+};
+export default UsersList;
