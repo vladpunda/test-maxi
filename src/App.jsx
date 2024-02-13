@@ -5,7 +5,7 @@ import Navigation from "./Components/Navigation/Navigation";
 import classes from "./App.module.scss";
 function App() {
   return (
-    <div className={classes.appB}>
+    <div className={classes.appWrapper}>
       <Navigation />
       <Routes>
         <Route path="/" element={<UsersPage />} />

@@ -19,7 +19,6 @@ function FormAddUser({ onModalClose }) {
   });
 
   const onSubmit = (data) => {
-    console.log(data.phone.length);
     const addId = users[users.length - 1].id + 1;
     const user = {
       ...data,
@@ -38,30 +37,33 @@ function FormAddUser({ onModalClose }) {
           <label>
             Имя:
             <input
+              autoComplete="false"
               {...register("name", {
                 required: "Поле обязательно к заполнению",
               })}
             />
             <div>
-              {errors?.name && <p>{errors?.name?.message || "Error!"}</p>}
+              {errors?.name && <p>{errors?.name?.message || "Ошибка!"}</p>}
             </div>
           </label>
           <label>
             Имя пользователя:
             <input
+              autoComplete="false"
               {...register("username", {
                 required: "Поле обязательно к заполнению",
               })}
             />
             <div>
               {errors?.username && (
-                <p>{errors?.username?.message || "Error!"}</p>
+                <p>{errors?.username?.message || "Ошибка!"}</p>
               )}
             </div>
           </label>
           <label>
             Электронная почта:
             <input
+              autoComplete="false"
               {...register("email", {
                 required: "Поле обязательно к заполнению",
                 pattern: {
@@ -72,12 +74,13 @@ function FormAddUser({ onModalClose }) {
               })}
             />
             <div>
-              {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
+              {errors?.email && <p>{errors?.email?.message || "Ошибка!"}</p>}
             </div>
           </label>
           <label>
             Телефон:
             <MaskedInput
+              autoComplete="false"
               mask={"+7 999 999-99-99"}
               maskChar={""}
               placeholder="+7 999 999-99-99"
@@ -87,12 +90,15 @@ function FormAddUser({ onModalClose }) {
               })}
             />
             <div>
-              {errors?.phone && <p>{errors?.phone?.message || "Error!"}</p>}
+              {errors?.phone && <p>{errors?.phone?.message || "Ошибка!"}</p>}
             </div>
           </label>
           <label>
             Индекс:
-            <input {...register("zipcode", { required: false })} />
+            <input
+              autoComplete="false"
+              {...register("zipcode", { required: false })}
+            />
           </label>
         </div>
         <div className={classes.formButton}>

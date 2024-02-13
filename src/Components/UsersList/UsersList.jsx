@@ -133,6 +133,6 @@ function UsersList({ users }) {
   );
 }
 UsersList.propTypes = {
-  users: PropTypes.array,
+  users: PropTypes.arrayOf(PropTypes.object),
 };
 export default UsersList;
