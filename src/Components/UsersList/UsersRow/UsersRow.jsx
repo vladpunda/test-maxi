@@ -25,7 +25,15 @@ function UsersRow({ user, onCheck }) {
   );
 }
 UsersRow.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.shape({
+    checkbox: PropTypes.bool,
+    id: PropTypes.number,
+    name: PropTypes.string,
+    username: PropTypes.string,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+    address: PropTypes.object,
+  }),
   onCheck: PropTypes.func,
 };
 export default UsersRow;

@@ -8,6 +8,7 @@ function ConfirmAsk({ openAndCloseConfirm }) {
 
   const removeOn = () => {
     dispatch(removeUser());
+    openAndCloseConfirm();
   };
   return (
     <div>
@@ -21,14 +22,7 @@ function ConfirmAsk({ openAndCloseConfirm }) {
 
       <div className={classes.confirmButton}>
         <Button onClick={openAndCloseConfirm}>Отменить</Button>
-        <Button
-          onClick={() => {
-            removeOn();
-            openAndCloseConfirm();
-          }}
-        >
-          Удалить
-        </Button>
+        <Button onClick={removeOn}>Удалить</Button>
       </div>
     </div>
   );

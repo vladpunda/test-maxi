@@ -14,7 +14,7 @@ function MySelect({ options, onChange, name }) {
   );
 }
 MySelect.propTypes = {
-  options: PropTypes.array,
+  options: PropTypes.arrayOf(PropTypes.object),
   onChange: PropTypes.func,
   name: PropTypes.string,
 };
