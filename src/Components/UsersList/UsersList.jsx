@@ -78,11 +78,18 @@ function UsersList({ users }) {
     setConfirm(!confirm);
   };
 
+  const onDelete = () => {
+    users.forEach((user) => {
+      if (user.checkbox) {
+        openAndCloseConfirm();
+      }
+    });
+  };
   return (
     <div>
       <HeaderTitle title={"Список сотрудников"}></HeaderTitle>
       <div className={classes.searchBlock}>
-        <div>
+        <div className={classes.searchInput}>
           <p>Искать по:</p>
           <MySelect
             name="searchFor"
@@ -102,7 +109,7 @@ function UsersList({ users }) {
           />
         </div>
         <div className={classes.userButton}>
-          <Button onClick={openAndCloseConfirm}>Удалить сотрудника</Button>
+          <Button onClick={onDelete}>Удалить сотрудника</Button>
           <Button onClick={() => setAddUserOpen(true)}>
             Добавить сотрудника
           </Button>
